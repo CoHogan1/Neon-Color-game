@@ -359,6 +359,12 @@ toggleModal()
 addBoxEvents(allBox)
 
 startButton.addEventListener('click', ()=> {
+    if (neonMode === true) {
+        neonPrep(allBox) // 1
+    } else {
+        fillCss(allBox) // 1
+    }
+    getWinningArg(allBox)
     hit = 0
     miss = 0
     startTimer(player)
@@ -367,6 +373,12 @@ startButton.addEventListener('click', ()=> {
 
 // touchscreen------------------------------------------------------------------
 startButton.addEventListener('touchstart', ()=>{
+    if (neonMode === true) {
+        neonPrep(allBox) // 1
+    } else {
+        fillCss(allBox) // 1
+    }
+    getWinningArg(allBox)
     hit = 0
     miss = 0
     startTimer(player)
