@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!-- First css link to load css for screens 800px and smaller. -->
+        <!-- courtesy of "Css-tricks.com" -->
+        <link rel="stylesheet" media="screen and (max-device-width: 800px)" href="css/800.css">
+        <link rel="stylesheet" href="css/style.css">
+        <meta charset="utf-8">
+        <title>Color Game</title>
+    </head>
+    <body>
+
+        <div class="modal"> <br><br>
+            <div class="modal-Info">Press Ok to play! <br><br>
+                <button type="button" class="modal-button">Ok</button><br><br><br>
+                <p class="info"> Player 1 chose a mode, normal or neon.
+                    <br> Get 10 correct guesses and win.
+                    <br> Or miss 10 times and lose.
+                    <br> Now Player Two gets a turn! </p>
+            </div>
+        </div>
+        <h1 class="GameTitle">Colors</h1>
+        <h3 class="Directions">Match this Color</h3><br>
+        <h3 class="control">"This color"</h3><br>
+
+        <div class="players">
+            <h6 class="player1">P1 hit:<p class="p1hit">0</p><h6 class="player1">P1 Miss:<p class="p1miss">0</p></h6></h6>
+            <h6 class="player2">P2 hit:<p class="p2hit">0</p><h6 class="player2">P2 Miss:<p class="p2miss">0</p></h6></h6>
+       </div><br><br>
+
+       <div class="choiceBoxes">
+           <div class="" id="box1">Choice 1</div>
+           <div class="" id="box2">Choice 2</div>
+           <div class="" id="box3">Choice 3</div>
+           <div class="" id="box4">Choice 4</div>
+           <div class="" id="box5">Choice 5</div>
+           <div class="" id="box6">Choice 6</div>
+       </div><br>
+
+
+       <div class="button-list">
+           <button type="button" class="norm">Normal-Mode</button>
+           <button type="button" class="start">Start</button>
+           <button type="button" class="neo">Neon-Mode</button>
+       </div>
+
+
+    </body>
+    <script src="js/app.js"></script>
+</html>

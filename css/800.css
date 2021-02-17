@@ -1,0 +1,146 @@
+* {
+    text-align: center;
+    color: white;
+    background-color: black;
+    border: 2px solid black;
+    margin:auto;
+    padding: 0;
+}
+
+/* All modal css */
+.modal {
+    font-size: 30px;
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(90deg red, white);
+    z-index: 1;
+}
+.modal-info {
+    font-size: 2em;
+    color: red;
+}
+.modal-button {
+    font-size: 30px;
+    background-color: white;
+    color: red;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+.info {
+    font-size: 30px;;
+}
+/* end modal */
+
+h1 {
+    border-color: black;
+}
+h3 {
+    border-color: black;
+    font-size: 15px;
+}
+.control {
+    font-size: 18px;
+}
+.players {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.player1 {
+    background: red;
+}
+.p1hit {
+    background: red;
+    border: red;
+}
+.p1miss {
+    border: red;
+    background: red;
+}
+.player2 {
+    background: blue;
+}
+.p2hit {
+    border: blue;
+    background: blue;
+}
+.p2miss {
+    border: blue;
+    background: blue;
+}
+
+.choiceBoxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: auto;
+    height:300px;
+}
+
+#box1 {
+    width: 30%;
+    height: 40%;
+    line-height: 110px;
+    text-decoration: underline;
+}
+#box2 {
+    width: 30%;
+    height: 40%;
+    line-height: 110px;
+    text-decoration: underline;
+}
+#box3 {
+    width: 30%;
+    height: 40%;
+    line-height: 110px;
+    text-decoration: underline;
+}
+#box4 {
+    width: 30%;
+    height: 40%;
+    line-height: 110px;
+    text-decoration: underline;
+}
+#box5 {
+    width: 30%;
+    height: 40%;
+    line-height: 110px;
+    text-decoration: underline;
+}
+#box6 {
+    width: 30%;
+    height: 40%;
+    line-height: 110px;
+    text-decoration: underline;
+}
+
+.players {
+    font-size: 25px;
+}
+.start {
+    background-color: white;
+    color: black;
+    height: 25px;
+    width: 35px;
+
+}
+.control {
+    font-size: 2em;
+}
+.button-list {
+    display: flex;
+    flex-direction: row;
+}
+.norm{
+    background-image: linear-gradient(45deg, red, green, blue);
+}
+.neo {
+    text-shadow: 0 0 10px white, 0 0 20px blue, 0 0 30px blue, 0 0 40px white, 0 0 50px blue, 0 0 60px , 0 0 70px blue;
+}
