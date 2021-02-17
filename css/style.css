@@ -48,9 +48,9 @@ h3 {
     border-color: black;
     display:flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 50%;
+    max-width: 60%;
 }
 .player1 {
     margin: 0;
@@ -60,6 +60,26 @@ h3 {
     margin: 0;
     padding: 5px;
 }
+.p1hit {
+    display: block;
+    height: 30px;
+}
+.p1miss {
+    display: block;
+    height: 30px;
+
+}
+.p2hit {
+    display: block;
+    height: 30px;
+
+}
+.p2miss{
+    display: block;
+    height: 30px;
+
+}
+
 .choiceBoxes {
     border-color: black;
     display: flex;

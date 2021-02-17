@@ -13,6 +13,21 @@ const p2miss =      document.querySelector('.p2miss')
 const control =     document.querySelector(".control")
 const neo =         document.querySelector(".neo")
 const norm =        document.querySelector(".norm")
+const p1name =      document.querySelector(".player1")
+const p2name =      document.querySelector(".player2")
+const p1nameMiss =      document.querySelector("#player1m")
+const p2nameMiss =      document.querySelector("#player2m")
+
+// audio
+
+let correctBeep = new Audio()
+correctBeep.src = 'audio/hit.wav'
+let wrongBeep = new Audio()
+wrongBeep.src = "audio/miss.wav"
+let win = new Audio()
+win.src = 'audio/win.wav'
+let lost = new Audio()
+lost.src = 'audio/lost.wav'
 
 // in game variables to keep track of stats.
 let controlText = control.innerText
@@ -71,7 +86,19 @@ const getNeonColor = () => {
 }
 //------------------------------------------------------------------------neon--
 ////////////////////////////////////////////////////////////////////////////////
+let names = [] // 0 is player 1, 1 is player 2
 
+const getNames = () => {
+    let y = prompt("Enter Your Name Player1", "Player 1")
+    p1name.innerText = y + " Hit:"
+    p1nameMiss.innerText = y + " Miss:"
+    let z = prompt("Enter Your Name Player2", "Player 2")
+    p2name.innerText = z + " Hit:"
+    p2nameMiss.innerText = z + " Miss:"
+    names.push(y)
+    names.push(z)
+    return names
+}
 
 let y = document.querySelector('.modal')
 
@@ -79,6 +106,7 @@ const toggleModal = () => {
     let x = document.querySelector('.modal-button')
     x.addEventListener('click', ()=> {
         y.style.display = 'none'
+        getNames()
     })
     // on click modal display none.
 }
@@ -88,6 +116,7 @@ const toggleModalTouchScreen = () => {
     let x = document.querySelector('.modal-button')
     x.addEventListener('touchstart', ()=> {
         y.style.display = 'none'
+        getNames()
     })
 }
 // touchscreen------------------------------------------------------------------
@@ -130,16 +159,18 @@ const addBoxEvents = (arr) =>{
     for (let i = 0; i <arr.length; i++) {
         arr[i].addEventListener('click', ()=>{
             if (arr[i].innerText === controlText) {
+                correctBeep.play()
                 hit++
                 if (player === 1) {
                     p1hit.innerText = hit
                     return hit
                 }
                 else {
-                    p2miss.innerText = hit
+                    p2hit.innerText = hit
                     return hit
                 }
             } else {
+                wrongBeep.play()
                 miss++
                 if (player === 1) {
                     p1miss.innerText = miss
@@ -155,10 +186,11 @@ const addBoxEvents = (arr) =>{
 }
 
 //Touchscreen-------------------------------------------------------------------
-const addBoxEventsTouchScreen = (arr) =>{
+const addBoxEventsTouchScreen = (arr) =>{ // x stands for player
     for (let i = 0; i <arr.length; i++) {
         arr[i].addEventListener('touchstart', ()=>{
             if (arr[i].innerText === controlText) {
+                correctBeep.play()
                 hit++
                 if (player === 1) {
                     p1hit.innerText = hit
@@ -169,6 +201,7 @@ const addBoxEventsTouchScreen = (arr) =>{
                     return hit
                 }
             } else {
+                wrongBeep.play()
                 miss++
                 if (player === 1) {
                     p1miss.innerText = miss
@@ -209,6 +242,7 @@ const neonPrep = (arr) => {
         arr[i].innerText = getNeonColor()
         arr[i].style.textShadow =  getNeonCss()// get random color from color list.
     }
+    control.style.color = "white"
     control.style.textShadow = getNeonCss()
 }
 
@@ -228,12 +262,26 @@ const clearAllCss = () => {
     control.innerText = 'X'
 }
 
+const changePlayer = (x) => {
+    console.log(x + " player at start");
+    if (hit > 9) {
+        x++
+        console.log(x+"player after 9 hits");
+        return x
+    }
+    if (miss > 9) {
+        x++
+        console.log(x+"player aftet 9 misses");
+        return x
+    }
+}
 
 // change css based on interval.
-const startTimer = () => {
-    alert("3....2....")
+const startTimer = (x) => {
+    alert("......Get Ready......")
     const interval = setInterval(()=> {
-        if (player = 1) {
+        changePlayer(x)
+        if (player === 1) {
             if (neonMode === true) {
                 neonPrep(allBox) // 1
             } else {
@@ -241,18 +289,24 @@ const startTimer = () => {
             }
             getWinningArg(allBox)// 2
             if (hit > 9) {
-                alert("You Win!")
+                player++
+                win.play()
+                alert("You Win! " + names[0])
                 clearInterval(interval)
                 clearAllCss()
-                player++
-                alert('Player Two get Ready')
+                alert(`${names[1]}, Get Ready!`)
+                showModeButtons()
+                return player
             }
             if (miss > 9) {
-                alert("You Lost")
+                player++
+                lost.play()
+                alert("You Lost, " + names[0])
                 clearInterval(interval)
                 clearAllCss()
-                player++
-                alert('Player Two get Ready')
+                alert(`${names[1]}, Get Ready!`)
+                showModeButtons()
+                return player
             }
         } else {
             if (neonMode === true) {
@@ -262,40 +316,61 @@ const startTimer = () => {
             }
             getWinningArg(allBox)// 2
             if (hit > 9) {
-                alert("You Win!")
+                player++
+                win.play()
+                alert("You Win! " + names[1])
                 clearInterval(interval)
                 clearAllCss()
-                player++
                 alert('Game Over')
+                showModeButtons()
+                player = 1
+                return player
             }
             if (miss > 9) {
-                alert("You Lost")
+                player++
+                lost.play()
+                alert("You Lost, " + names[1])
                 clearInterval(interval)
                 clearAllCss()
-                player++
                 alert("Game Over")
+                showModeButtons()
+                player = 1
+                return player
             }
         }
 
-    }, 2000)// every two seconds.
-    return interval
+    }, 1900)// every two seconds.
+    //return interval
+}
+
+const hideModeButtons = () => {
+    neo.style.display = 'none'
+    norm.style.display = 'none'
+    startButton.style.display = "none"
+}
+const showModeButtons = ()=>{
+    neo.style.display = 'block'
+    norm.style.display = "block"
+    startButton.style.display = "block"
 }
 
 // run game
 toggleModal()
+addBoxEvents(allBox)
 
 startButton.addEventListener('click', ()=> {
     hit = 0
     miss = 0
-    addBoxEvents(allBox)
-    startTimer()
+    startTimer(player)
+    hideModeButtons()
 })
+
 // touchscreen------------------------------------------------------------------
 startButton.addEventListener('touchstart', ()=>{
     hit = 0
     miss = 0
-    addBoxEvents(allBox)
-    startTimer()
+    startTimer(player)
+    hideModeButtons()
 })
 
 //------------------------------------------------------------------------------
